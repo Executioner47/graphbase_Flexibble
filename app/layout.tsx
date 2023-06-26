@@ -6,7 +6,7 @@ export const metadata = {
   title: "Flexibble",
   description: "Showcase and discover remarkable flexbox developer projects.",
   icons: {
-    icon: "favicon.ico",
+    icon: "/_next/static/media/metadata/favicon.ico",
   },
 };
 
