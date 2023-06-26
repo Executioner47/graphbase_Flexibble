@@ -1,13 +1,10 @@
 import "./globals.css";
-import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
+import Navbar from "@/Components/Navbar";
 
 export const metadata = {
   title: "Flexibble",
-  description: "Showcase and discover remarkable flexbox developer projects.",
-  icons: {
-    icon: "/_next/static/media/metadata/favicon.ico",
-  },
+  description: "Showcase and discover remarkable developer projects",
 };
 
 export default function RootLayout({

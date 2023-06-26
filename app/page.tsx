@@ -1,27 +1,27 @@
+import { ProjectInterface } from "@/common.types";
 import Categories from "@/Components/Categories";
 import LoadMore from "@/Components/LoadMore";
 import ProjectCard from "@/Components/ProjectCard";
-import { ProjectInterface } from "@/common.types";
 import { fetchAllProjects } from "@/lib/actions";
+
+type SearchParams = {
+  category?: string | null;
+  endcursor?: string | null;
+};
+
+type Props = {
+  searchParams: SearchParams;
+};
 
 type ProjectSearch = {
   projectSearch: {
-    edges: {
-      node: ProjectInterface;
-    }[];
+    edges: { node: ProjectInterface }[];
     pageInfo: {
       hasPreviousPage: boolean;
       hasNextPage: boolean;
       startCursor: string;
       endCursor: string;
     };
-  };
-};
-
-type Props = {
-  searchParams: {
-    category?: string | null;
-    endcursor?: string | null;
   };
 };
 
@@ -36,20 +36,20 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
 
   if (projectsToDisplay.length === 0) {
     return (
-      <>
-        <section className="flexStart flex-col paddings ">
-          <Categories />
-          <p className="no-result-text text-center">
-            No projects found, go create some first.
-          </p>
-        </section>
-      </>
+      <section className="flexStart flex-col paddings">
+        <Categories />
+
+        <p className="no-result-text text-center">
+          No projects found, go create some first.
+        </p>
+      </section>
     );
   }
-  const pagination = data?.projectSearch?.pageInfo;
+
   return (
-    <section className="flex-start flex-col paddings mb-16">
+    <section className="flexStart flex-col paddings mb-16">
       <Categories />
+
       <section className="projects-grid">
         {projectsToDisplay.map(({ node }: { node: ProjectInterface }) => (
           <ProjectCard
@@ -63,11 +63,12 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
           />
         ))}
       </section>
+
       <LoadMore
-        startCursor={pagination?.startCursor}
-        endCursor={pagination?.endCursor}
-        hasPreviousPage={pagination?.hasPreviousPage}
-        hasNextPage={pagination.hasNextPage}
+        startCursor={data?.projectSearch?.pageInfo?.startCursor}
+        endCursor={data?.projectSearch?.pageInfo?.endCursor}
+        hasPreviousPage={data?.projectSearch?.pageInfo?.hasPreviousPage}
+        hasNextPage={data?.projectSearch?.pageInfo.hasNextPage}
       />
     </section>
   );
