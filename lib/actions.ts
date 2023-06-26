@@ -1,14 +1,14 @@
 import { GraphQLClient } from "graphql-request";
 
 import {
-  createProjectQuery,
-  createUserQuery,
-  deleteProjectQuery,
+  createProjectMutation,
+  createUserMutation,
+  deleteProjectMutation,
+  updateProjectMutation,
   getProjectByIdQuery,
   getProjectsOfUserQuery,
   getUserQuery,
   projectsQuery,
-  updateProjectQuery,
 } from "@/Graphql";
 import { ProjectForm } from "@/common.types";
 
@@ -85,7 +85,7 @@ export const createNewProject = async (
       },
     };
 
-    return makeGraphQLRequest(createProjectQuery, variables);
+    return makeGraphQLRequest(createProjectMutation, variables);
   }
 };
 
@@ -118,12 +118,12 @@ export const updateProject = async (
     input: updatedForm,
   };
 
-  return makeGraphQLRequest(updateProjectQuery, variables);
+  return makeGraphQLRequest(updateProjectMutation, variables);
 };
 
-export const deleteProject = (id: string, token?: string) => {
+export const deleteProject = (id: string, token: string) => {
   client.setHeader("Authorization", `Bearer ${token}`);
-  return makeGraphQLRequest(deleteProjectQuery, { id });
+  return makeGraphQLRequest(deleteProjectMutation, { id });
 };
 
 export const getProjectDetails = (id: string) => {
@@ -142,7 +142,7 @@ export const createUser = (name: string, email: string, avatarUrl: string) => {
     },
   };
 
-  return makeGraphQLRequest(createUserQuery, variables);
+  return makeGraphQLRequest(createUserMutation, variables);
 };
 
 export const getUserProjects = (id: string, last?: number) => {

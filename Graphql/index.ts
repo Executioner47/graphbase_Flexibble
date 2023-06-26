@@ -1,35 +1,4 @@
-export const getUserQuery = `
-    query getUser($email: String!) {
-        user(by: { email: $email }) {
-            id
-            name
-            email
-            avatarUrl
-            description
-            githubUrl
-            linkedInUrl
-            
-        }
-    }
-`;
-
-export const createUserQuery = `
-    mutation CreateUser($input: UserCreateInput!) {
-        userCreate(input: $input) {
-            user{
-                id
-                name
-                email
-                avatarUrl
-                description
-                githubUrl
-                linkedInUrl
-            }
-        }
-    }
-`;
-
-export const createProjectQuery = `
+export const createProjectMutation = `
 	mutation CreateProject($input: ProjectCreateInput!) {
 		projectCreate(input: $input) {
 			project {
@@ -45,7 +14,7 @@ export const createProjectQuery = `
 	}
 `;
 
-export const updateProjectQuery = `
+export const updateProjectMutation = `
 	mutation UpdateProject($id: ID!, $input: ProjectUpdateInput!) {
 		projectUpdate(by: { id: $id }, input: $input) {
 			project {
@@ -61,7 +30,7 @@ export const updateProjectQuery = `
 	}
 `;
 
-export const deleteProjectQuery = `
+export const deleteProjectMutation = `
   mutation DeleteProject($id: ID!) {
     projectDelete(by: { id: $id }) {
       deletedId
@@ -69,24 +38,20 @@ export const deleteProjectQuery = `
   }
 `;
 
-export const getProjectByIdQuery = `
-  query GetProjectById($id: ID!) {
-    project(by: { id: $id }) {
-      id
-      title
-      description
-      image
-      liveSiteUrl
-      githubUrl
-      category
-      createdBy {
-        id
-        name
-        email
-        avatarUrl
-      }
-    }
-  }
+export const createUserMutation = `
+	mutation CreateUser($input: UserCreateInput!) {
+		userCreate(input: $input) {
+			user {
+				name
+				email
+				avatarUrl
+				description
+				githubUrl
+				linkedinUrl
+				id
+			}
+		}
+	}
 `;
 
 export const projectsQuery = `
@@ -119,6 +84,40 @@ export const projectsQuery = `
   }
 `;
 
+export const getProjectByIdQuery = `
+  query GetProjectById($id: ID!) {
+    project(by: { id: $id }) {
+      id
+      title
+      description
+      image
+      liveSiteUrl
+      githubUrl
+      category
+      createdBy {
+        id
+        name
+        email
+        avatarUrl
+      }
+    }
+  }
+`;
+
+export const getUserQuery = `
+  query GetUser($email: String!) {
+    user(by: { email: $email }) {
+      id
+      name
+      email
+      avatarUrl
+      description
+      githubUrl
+      linkedinUrl
+    }
+  }
+`;
+
 export const getProjectsOfUserQuery = `
   query getUserProjects($id: ID!, $last: Int = 4) {
     user(by: { id: $id }) {
@@ -128,7 +127,7 @@ export const getProjectsOfUserQuery = `
       description
       avatarUrl
       githubUrl
-      linkedInUrl
+      linkedinUrl
       projects(last: $last) {
         edges {
           node {
