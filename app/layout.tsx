@@ -5,6 +5,9 @@ import Footer from "@/Components/Footer";
 export const metadata = {
   title: "Flexibble",
   description: "Showcase and discover remarkable flexbox developer projects.",
+  icons: {
+    icon: "favicon.ico",
+  },
 };
 
 export default function RootLayout({
