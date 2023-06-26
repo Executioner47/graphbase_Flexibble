@@ -32,6 +32,7 @@ const AuthProviders = () => {
         {Object.values(providers).map((provider: Provider, index) => {
           return (
             <Button
+              key={index}
               title="Sign In"
               textColor="black"
               bgColor="transaparent"
