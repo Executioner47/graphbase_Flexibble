@@ -118,6 +118,20 @@ export const getUserQuery = `
   }
 `;
 
+export const getUsersByNameQuery = `
+  query GetUsersByName($name: String!) {
+    user(by: { name: $name }) {
+      id
+      name
+      email
+      avatarUrl
+      description
+      githubUrl
+      linkedinUrl
+    }
+  }
+`;
+
 export const getProjectsOfUserQuery = `
   query getUserProjects($id: ID!, $last: Int = 4) {
     user(by: { id: $id }) {

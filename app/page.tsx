@@ -2,6 +2,7 @@ import { ProjectInterface } from "@/common.types";
 import Categories from "@/Components/Categories";
 import LoadMore from "@/Components/LoadMore";
 import ProjectCard from "@/Components/ProjectCard";
+import SearchInput from "@/Components/SearchInput";
 import { fetchAllProjects } from "@/lib/actions";
 
 type SearchParams = {
@@ -48,6 +49,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
 
   return (
     <section className="flexStart flex-col paddings mb-16">
+      {/* <SearchInput /> */}
       <Categories />
 
       <section className="projects-grid">

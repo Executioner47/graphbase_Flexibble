@@ -61,3 +61,44 @@ export interface ProjectForm {
   githubUrl: string;
   category: string;
 }
+
+export interface SearchResult {
+  projectSearch: {
+    pageInfo: {
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+      startCursor: string | null;
+      endCursor: string | null;
+    };
+    edges: Array<
+      | {
+          node: {
+            id: string;
+            title: string;
+            description: string;
+            image: string;
+            liveSiteUrl: string;
+            githubUrl: string;
+            category: string;
+            createdBy: {
+              id: string;
+              email: string;
+              name: string;
+              avatarUrl: string;
+            } | null;
+          };
+        }
+      | {
+          node: {
+            id: string;
+            name: string;
+            email: string;
+            avatarUrl: string;
+            description: string;
+            githubUrl: string;
+            linkedinUrl: string;
+          };
+        }
+    >;
+  };
+}

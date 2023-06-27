@@ -8,7 +8,6 @@ const Categories = () => {
   const pathName = usePathname();
   const searchParams = useSearchParams();
   const category = searchParams.get("category");
-  console.log(category);
 
   const handleTags = (item: string) => {
     if (item === "All") {
