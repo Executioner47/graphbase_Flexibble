@@ -26,7 +26,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
     description: project?.description || "",
     image: project?.image || "",
     liveSiteUrl: project?.liveSiteUrl || "",
-    gitHubUrl: project?.gitHubUrl || "",
+    githubUrl: project?.githubUrl || "",
     category: project?.category || "",
   });
 
@@ -138,9 +138,9 @@ const ProjectForm = ({ type, session, project }: Props) => {
       <FormField
         type="url"
         title="GitHub URL"
-        state={form.gitHubUrl}
+        state={form.githubUrl}
         placeholder="https://github.com/adrianhajdin"
-        setState={(value) => handleStateChange("gitHubUrl", value)}
+        setState={(value) => handleStateChange("githubUrl", value)}
       />
 
       <CustomMenu
