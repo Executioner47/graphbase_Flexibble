@@ -1,13 +1,21 @@
-import React from "react";
 import { getUserProjects } from "@/lib/actions";
-import { UserProfile } from "@/common.types";
 import ProfilePage from "@/Components/ProfilePage";
+import { UserProfile } from "@/common.types";
 
-const UserProfile = async ({ params: { id } }: { params: { id: string } }) => {
-  const result = (await getUserProjects(id, 100)) as { user?: UserProfile };
-  if (!result?.user) {
-    return <div className="no-result-text">User not found</div>;
-  }
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+const UserProfile = async ({ params }: Props) => {
+  const result = (await getUserProjects(params.id, 100)) as {
+    user: UserProfile;
+  };
+
+  if (!result?.user)
+    return <p className="no-result-text">Failed to fetch user info</p>;
+
   return <ProfilePage user={result?.user} />;
 };
 

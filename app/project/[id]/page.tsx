@@ -4,11 +4,9 @@ import Link from "next/link";
 import { getCurrentUser } from "@/lib/session";
 import { getProjectDetails } from "@/lib/actions";
 import Modal from "@/Components/Modal";
-// import ProjectActions from "@/components/ProjectActions";
-// import RelatedProjects from "@/components/RelatedProjects";
-import { ProjectInterface } from "@/common.types";
-import RelatedProjects from "@/Components/RelatedProjects";
 import ProjectActions from "@/Components/ProjectActions";
+import RelatedProjects from "@/Components/RelatedProjects";
+import { ProjectInterface } from "@/common.types";
 
 const Project = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
