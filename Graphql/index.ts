@@ -46,7 +46,7 @@ export const createUserMutation = `
 				email
 				avatarUrl
 				description
-				githubUrl
+				gitHubUrl
 				linkedinUrl
 				id
 			}
@@ -66,7 +66,7 @@ export const projectsQuery = `
       edges {
         node {
           title
-          githubUrl
+          gitHubUrl
           description
           liveSiteUrl
           id
@@ -92,7 +92,7 @@ export const getProjectByIdQuery = `
       description
       image
       liveSiteUrl
-      githubUrl
+      gitHubUrl
       category
       createdBy {
         id
@@ -112,7 +112,7 @@ export const getUserQuery = `
       email
       avatarUrl
       description
-      githubUrl
+      gitHubUrl
       linkedinUrl
     }
   }
@@ -126,7 +126,7 @@ export const getProjectsOfUserQuery = `
       email
       description
       avatarUrl
-      githubUrl
+      gitHubUrl
       linkedinUrl
       projects(last: $last) {
         edges {
