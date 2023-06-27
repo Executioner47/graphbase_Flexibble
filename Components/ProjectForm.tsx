@@ -27,7 +27,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
     image: project?.image || "",
     liveSiteUrl: project?.liveSiteUrl || "",
     githubUrl: project?.githubUrl || "",
-    category: project?.category || "",
+    category: project?.category || "All",
   });
 
   const handleStateChange = (fieldName: keyof FormState, value: string) => {
@@ -57,7 +57,6 @@ const ProjectForm = ({ type, session, project }: Props) => {
       handleStateChange("image", result);
     };
   };
-
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 

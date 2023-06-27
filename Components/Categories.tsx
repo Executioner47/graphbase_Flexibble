@@ -1,18 +1,21 @@
 "use client";
-
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
 import { categoryFilters } from "@/Constants";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React from "react";
 
 const Categories = () => {
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
-
   const category = searchParams.get("category");
+  console.log(category);
 
   const handleTags = (item: string) => {
-    router.push(`${pathName}?category=${item}`);
+    if (item === "All") {
+      router.push(`${pathName}`);
+    } else {
+      router.push(`${pathName}?category=${item}`);
+    }
   };
 
   return (
@@ -24,8 +27,8 @@ const Categories = () => {
             type="button"
             onClick={() => handleTags(filter)}
             className={`${
-              category === filter
-                ? "bg-light-white-300 font-medium"
+              category === filter || (filter === "All" && !category)
+                ? "bg-slate-200 font-medium"
                 : "font-normal"
             } px-4 py-3 rounded-lg capitalize whitespace-nowrap`}
           >
