@@ -1,8 +1,8 @@
-import { ProjectInterface, UserProfile } from "@/common.types";
-import { getUserProjects } from "@/lib/actions";
-import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+
+import { getUserProjects } from "@/lib/actions";
+import { ProjectInterface, UserProfile } from "@/common.types";
+import Image from "next/image";
 
 type Props = {
   userId: string;
@@ -10,13 +10,14 @@ type Props = {
 };
 
 const RelatedProjects = async ({ userId, projectId }: Props) => {
-  const result = (await getUserProjects(userId, 5)) as { user?: UserProfile };
+  const result = (await getUserProjects(userId)) as { user?: UserProfile };
 
   const filteredProjects = result?.user?.projects?.edges?.filter(
     ({ node }: { node: ProjectInterface }) => node?.id !== projectId
   );
 
   if (filteredProjects?.length === 0) return null;
+
   return (
     <section className="flex flex-col mt-32 w-full">
       <div className="flexBetween">

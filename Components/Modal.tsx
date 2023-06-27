@@ -8,6 +8,7 @@ export default function Modal({ children }: { children: ReactNode }) {
   const overlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
   const router = useRouter();
+
   const onDismiss = useCallback(() => {
     router.push("/");
   }, [router]);
@@ -20,8 +21,9 @@ export default function Modal({ children }: { children: ReactNode }) {
     },
     [onDismiss, overlay]
   );
+
   return (
-    <div className="modal" ref={overlay} onClick={handleClick}>
+    <div ref={overlay} className="modal" onClick={(e) => handleClick(e)}>
       <button
         type="button"
         onClick={onDismiss}
@@ -29,7 +31,8 @@ export default function Modal({ children }: { children: ReactNode }) {
       >
         <Image src="/close.svg" width={17} height={17} alt="close" />
       </button>
-      <div className="modal_wrapper" ref={wrapper}>
+
+      <div ref={wrapper} className="modal_wrapper">
         {children}
       </div>
     </div>

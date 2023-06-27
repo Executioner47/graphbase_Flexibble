@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-type ProjectCardProps = {
-  key: string;
+type Props = {
   id: string;
   image: string;
   title: string;
@@ -13,19 +13,11 @@ type ProjectCardProps = {
   userId: string;
 };
 
-const ProjectCard = ({
-  key,
-  id,
-  image,
-  title,
-  name,
-  avatarUrl,
-  userId,
-}: ProjectCardProps) => {
-  const [randomLikes, setRandomLikes] = React.useState(0);
-  const [randomViews, setRandomViews] = React.useState("");
+const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
+  const [randomLikes, setRandomLikes] = useState(0);
+  const [randomViews, setRandomViews] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     setRandomLikes(Math.floor(Math.random() * 10000));
     setRandomViews(
       String((Math.floor(Math.random() * 10000) / 1000).toFixed(1) + "k")

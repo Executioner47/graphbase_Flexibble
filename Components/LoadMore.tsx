@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+
 import { useRouter } from "next/navigation";
+
 import Button from "./Button";
 
 type Props = {
@@ -17,30 +18,37 @@ const LoadMore = ({
   hasNextPage,
 }: Props) => {
   const router = useRouter();
-  const handleNavigation = (direction: string) => {
+
+  const handleNavigation = (type: string) => {
     const currentParams = new URLSearchParams(window.location.search);
-    if (direction === "next" && hasNextPage) {
-      currentParams.delete("startcursor");
-      currentParams.set("endcursor", endCursor);
-    } else if (direction === "first" && hasPreviousPage) {
+
+    if (type === "prev" && hasPreviousPage) {
       currentParams.delete("endcursor");
       currentParams.set("startcursor", startCursor);
+    } else if (type === "next" && hasNextPage) {
+      currentParams.delete("startcursor");
+      currentParams.set("endcursor", endCursor);
     }
-    const newSearchParam = currentParams.toString();
-    const newPathname = `${window.location.pathname}?${newSearchParam}`;
+
+    const newSearchParams = currentParams.toString();
+    const newPathname = `${window.location.pathname}?${newSearchParams}`;
+
     router.push(newPathname);
   };
+
   return (
     <div className="w-full flexCenter gap-5 mt-10">
       {hasPreviousPage && (
-        <>
-          <Button title="Back" handleClick={() => handleNavigation("first")} />
-        </>
+        <Button
+          title="First Page"
+          handleClick={() => handleNavigation("prev")}
+        />
       )}
       {hasNextPage && (
-        <>
-          <Button title="Next" handleClick={() => handleNavigation("next")} />
-        </>
+        <Button
+          title="Next Shots"
+          handleClick={() => handleNavigation("next")}
+        />
       )}
     </div>
   );

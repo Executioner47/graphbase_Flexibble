@@ -1,4 +1,5 @@
 "use client";
+
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
@@ -18,7 +19,7 @@ const CustomMenu = ({ title, state, filters, setState }: Props) => (
     <Menu as="div" className="self-start relative">
       <div>
         <Menu.Button className="flexCenter custom_menu-btn">
-          {state || "All"}
+          {state || "Category"}
           <Image src="/arrow-down.svg" width={10} height={5} alt="arrow down" />
         </Menu.Button>
       </div>

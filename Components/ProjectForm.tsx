@@ -8,7 +8,7 @@ import FormField from "./FormField";
 import Button from "./Button";
 import CustomMenu from "./CustomMenu";
 import { categoryFilters } from "@/Constants";
-import { createNewProject, updateProject, fetchToken } from "@/lib/actions";
+import { updateProject, createNewProject, fetchToken } from "@/lib/actions";
 import { FormState, ProjectInterface, SessionInterface } from "@/common.types";
 
 type Props = {
@@ -71,12 +71,18 @@ const ProjectForm = ({ type, session, project }: Props) => {
 
         router.push("/");
       }
+
       if (type === "edit") {
         await updateProject(form, project?.id as string, token);
+
         router.push("/");
       }
     } catch (error) {
-      console.log(error);
+      alert(
+        `Failed to ${
+          type === "create" ? "create" : "edit"
+        } a project. Try again!`
+      );
     } finally {
       setSubmitting(false);
     }

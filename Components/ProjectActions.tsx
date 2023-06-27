@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
-import Image from "next/image";
+
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+
 import { deleteProject, fetchToken } from "@/lib/actions";
 
 type Props = {
@@ -10,13 +12,17 @@ type Props = {
 };
 
 const ProjectActions = ({ projectId }: Props) => {
-  const [isDeleting, setIsDeleting] = React.useState(false);
-  let router = useRouter();
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const router = useRouter();
+
   const handleDeleteProject = async () => {
     setIsDeleting(true);
+
     const { token } = await fetchToken();
+
     try {
       await deleteProject(projectId, token);
+
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -24,6 +30,7 @@ const ProjectActions = ({ projectId }: Props) => {
       setIsDeleting(false);
     }
   };
+
   return (
     <>
       <Link
@@ -32,6 +39,7 @@ const ProjectActions = ({ projectId }: Props) => {
       >
         <Image src="/pencile.svg" width={15} height={15} alt="edit" />
       </Link>
+
       <button
         type="button"
         disabled={isDeleting}
